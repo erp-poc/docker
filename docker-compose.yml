@@ -82,3 +82,9 @@ db:
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_DB=core
 
+elk:
+  image: willdurand/elk:kibana-5.x
+  ports:
+    - "5601:80"
+    - "5043:5043"
+    - "5044:5044"
