@@ -36,6 +36,21 @@ core:
     - ~/.m2:/root/.m2
   net: "host"
 
+# Invoice Server (springboot app)
+invoice:
+  image: maven:3.3.9-jdk-8
+  working_dir: /invoice
+  # Build and run the app via Gradle
+  # Cache dependancies and Gradle on the shared folder so we dont have to download each time.
+  command: mvn spring-boot:run
+  # Let this container talk to postgres
+  ports:
+    - "8083:8083"
+  # Share the cwd on my mac with the container
+  volumes:
+    - ../invoice:/invoice
+    - ~/.m2:/root/.m2
+  net: "host"
 
 ui:
   #build: myapp-api/. # Use the Dockerfile under my myapp-api
